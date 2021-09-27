@@ -1,0 +1,133 @@
+<body>
+  <h1>Companys</h1>
+  <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#add">Add Company</button>
+  <div *ngIf='companys == 0'>
+    <h6>No hay ningun empleado</h6>
+  </div>
+  <table *ngIf='companys.length>=1'>
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Company</th>
+        <th scope="col">Celphone</th>
+        <th scope="col">Email</th>
+        <th scope="col">User</th>
+      </tr>
+    </thead>
+    <tbody *ngFor=' let company of companys'>
+      <tr>
+        <td scope='row'>{{company._id}}</td>
+        <td>{{company.company}}</td>
+        <td>{{company.celphone}}</td>
+        <td>{{company.email}}</td>
+        <td>{{company.user}}</td>
+        <td>
+          <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#edit" (click)='findCompany(company._id)'>Editar</button>
+            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete" (click)='findCompany(company._id)'>Eliminar</button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+
+<!-- Add  -->
+<div class="modal fade" id="add" tabindex="-1" aria-labelledby="add" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Company</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="col">
+          <label>Company</label>
+          <input type="text" class="form-control" name="company" #name="ngModel" [(ngModel)]="userModel.company" required>
+          <div class="invalid-feedback">Por favor ingresa el nombre de la empresa</div>
+        </div>
+        <div class="col">
+          <label>Celphone</label>
+          <input type="text" class="form-control" name="celphone" #name="ngModel" [(ngModel)]="userModel.celphone" required>
+          <div class="invalid-feedback">Por favor ingresa el teléfono de la empresa</div>
+        </div>
+        <div class="col">
+          <label>Email</label>
+          <input type="email" class="form-control" name="email" #name="ngModel" [(ngModel)]="userModel.email" required>
+          <div class="invalid-feedback">Por favor ingresa el email de la empresa</div>
+        </div>
+        <div class="col">
+          <label>User</label>
+          <input type="text" class="form-control" name="user" #name="ngModel" [(ngModel)]="userModel.user" required>
+          <div class="invalid-feedback">Por favor ingresa el usuario de la empresa</div>
+        </div>
+        <div class="col">
+          <label>Password</label>
+          <input type="password" class="form-control" name="password" #name="ngModel" [(ngModel)]="userModel.password" required>
+          <div class="invalid-feedback">Por favor ingresa la clave</div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)='addCompany()'>Add company</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Edit  -->
+<div class="modal fade" id="edit" tabindex="-1" aria-labelledby="edit" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit Company</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="col">
+          <label>Company</label>
+          <input type="text" class="form-control" name="company" #name="ngModel" [(ngModel)]="userModel.company" required>
+          <div class="invalid-feedback">Por favor ingresa el nombre de la empresa</div>
+        </div>
+        <div class="col">
+          <label>Celphone</label>
+          <input type="text" class="form-control" name="celphone" #name="ngModel" [(ngModel)]="userModel.celphone" required>
+          <div class="invalid-feedback">Por favor ingresa el teléfono de la empresa</div>
+        </div>
+        <div class="col">
+          <label>Email</label>
+          <input type="email" class="form-control" name="email" #name="ngModel" [(ngModel)]="userModel.email" required>
+          <div class="invalid-feedback">Por favor ingresa el email de la empresa</div>
+        </div>
+        <div class="col">
+          <label>User</label>
+          <input type="text" class="form-control" name="user" #name="ngModel" [(ngModel)]="userModel.user" required>
+          <div class="invalid-feedback">Por favor ingresa el usuario de la empresa</div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)='editCompany()'>Edit company</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Eliminar -->
+<div class="modal fade" id="delete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Delete Company</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ¿Estás seguro de eliminar la empresa: {{userModel.company}}?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="deleteCompany(userModel._id)">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>

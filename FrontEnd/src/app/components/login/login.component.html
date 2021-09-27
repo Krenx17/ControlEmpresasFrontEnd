@@ -1,0 +1,25 @@
+<body>
+  <article>
+      <div class="container">
+          <div class="row justify-content-md-center">
+              <div class="col col-lg-6">
+                  <form>
+                      <h1>Ingresa aquí</h1>
+                      <div class="mb-3">
+                          <label>User</label>
+                          <input type="text" class="form-control" name="usuario" #usuario="ngModel" [(ngModel)]="userModel.user">
+                      </div>
+                      <div class="mb-3">
+                          <label>Password</label>
+                          <input type="password" class="form-control" name="password" #password="ngModel" [(ngModel)]="userModel.password">
+                      </div>
+                      <div class="mb-3">
+                          <b class="form-text">No compartas tus credenciales con nadie.</b>
+                          <button type="submit" class="btn btn-primary" (click)="login()">Ingresar</button>
+                      </div>
+                  </form>
+              </div>
+          </div>
+      </div>
+  </article>
+</body>

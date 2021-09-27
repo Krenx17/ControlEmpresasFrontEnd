@@ -1,0 +1,139 @@
+<body>
+  <h1>Employees</h1>
+  <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#add">Add Employee</button>
+  <button type="button" class="btn btn-light">Generate PDF</button>
+  <div *ngIf='employees.length == 0'>
+    <h6>No hay ningun empleado</h6>
+  </div>
+  <table *ngIf='employees.length>=1'>
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Celphone</th>
+        <th scope="col">Department</th>
+        <th scope="col">Job</th>
+      </tr>
+    </thead>
+    <tbody *ngFor='let employee of employees'>
+      <tr>
+        <th>{{employee._id}}</th>
+        <th>{{employee.name}}</th>
+        <th>{{employee.email}}</th>
+        <th>{{employee.celphone}}</th>
+        <th>{{employee.department}}</th>
+        <th>{{employee.job}}</th>
+        <td>
+          <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+            <button type="button" class="btn btn-warning" data-bs-toggle="modal"  data-bs-target="#edit" (click)='idEmployee(employee._id)'>Editar</button>
+            <button type="button" class="btn btn-danger" data-bs-toggle="modal"  data-bs-target="#delete" (click)='idEmployee(employee._id)'>Eliminar</button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+
+<!-- Add -->
+<div class="modal fade" id="add"><div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">Add Employee</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+      <div class="col">
+        <label>Name</label>
+        <input type="text" class="form-control" name="name" #name="ngModel" [(ngModel)]="employee.name" required>
+        <div class="invalid-feedback">Por favor ingresa el nombre del empleado</div>
+      </div>
+      <div class="col">
+        <label>Email</label>
+        <input type="email" class="form-control" name="email" #name="ngModel" [(ngModel)]="employee.email" required>
+        <div class="invalid-feedback">Por favor ingresa el correo del empleado</div>
+      </div>
+      <div class="col">
+        <label>Celphone</label>
+        <input type="text" class="form-control" name="celphone" #name="ngModel" [(ngModel)]="employee.celphone" required>
+        <div class="invalid-feedback">Por favor ingresa el teléfono del empleado</div>
+      </div>
+      <div class="col">
+        <label>Department</label>
+        <input type="text" class="form-control" name="department" #name="ngModel" [(ngModel)]="employee.department" required>
+        <div class="invalid-feedback">Por favor ingresa el departamento del empleado</div>
+      </div>
+      <div class="col">
+        <label>Job</label>
+        <input type="text" class="form-control" name="job" #name="ngModel" [(ngModel)]="employee.job" required>
+        <div class="invalid-feedback">Por favor ingresa el trabajo del empleado</div>
+      </div>
+    </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)='addEmployee()'>Add Employee</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Edit -->
+<div class="modal fade" id="edit"><div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">Edit Employee</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+      <div class="col">
+        <label>Name</label>
+        <input type="text" class="form-control" name="name" #name="ngModel" [(ngModel)]="employee.name" required>
+        <div class="invalid-feedback">Por favor ingresa el nombre del empleado</div>
+      </div>
+      <div class="col">
+        <label>Email</label>
+        <input type="email" class="form-control" name="email" #name="ngModel" [(ngModel)]="employee.email" required>
+        <div class="invalid-feedback">Por favor ingresa el correo del empleado</div>
+      </div>
+      <div class="col">
+        <label>Celphone</label>
+        <input type="text" class="form-control" name="celphone" #name="ngModel" [(ngModel)]="employee.celphone" required>
+        <div class="invalid-feedback">Por favor ingresa el teléfono del empleado</div>
+      </div>
+      <div class="col">
+        <label>Department</label>
+        <input type="text" class="form-control" name="department" #name="ngModel" [(ngModel)]="employee.department" required>
+        <div class="invalid-feedback">Por favor ingresa el departamento del empleado</div>
+      </div>
+      <div class="col">
+        <label>Job</label>
+        <input type="text" class="form-control" name="job" #name="ngModel" [(ngModel)]="employee.job" required>
+        <div class="invalid-feedback">Por favor ingresa el trabajo del empleado</div>
+      </div>
+    </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)='editEmployee()'>Edit Employee</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Eliminar -->
+<div class="modal fade" id="delete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Delete Company</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ¿Estás seguro de eliminar el empleado: {{employee.name}}?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="deleteEmployee(employee._id)">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>

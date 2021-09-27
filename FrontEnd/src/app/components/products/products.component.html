@@ -1,0 +1,117 @@
+<body>
+  <h1>Products</h1>
+  <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#add">Add Product</button>
+  <div *ngIf='products.length == 0'>
+    <h6>No hay ningun empleado</h6>
+  </div>
+  <table>
+    <thead *ngIf='products.length>=1'>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Product</th>
+        <th scope="col">Provider</th>
+        <th scope="col">Stock</th>
+        <th scope="col">Sold</th>
+      </tr>
+    </thead>
+    <tbody *ngFor='let product of products'>
+      <tr>
+        <th>{{product._id}}</th>
+        <th>{{product.product}}</th>
+        <th>{{product.provider}}</th>
+        <th>{{product.stock}}</th>
+        <th>{{product.sold}}</th>
+        <td>
+          <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+            <button type="button" class="btn btn-warning" data-bs-toggle="modal"  data-bs-target="#edit" (click)='idProduct(product._id)'>Editar</button>
+            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete" (click)='idProduct(product._id)'>Eliminar</button>
+            <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#sell">Add Product</button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+
+<!-- Add -->
+<div class="modal fade" id="add"><div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">Add Product</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+      <div class="col">
+        <label>Product</label>
+        <input type="text" class="form-control" name="product" #name="ngModel" [(ngModel)]="product.product" required>
+        <div class="invalid-feedback">Por favor ingresa el nombre del producto</div>
+      </div>
+      <div class="col">
+        <label>Provider</label>
+        <input type="text" class="form-control" name="provider" #name="ngModel" [(ngModel)]="product.provider" required>
+        <div class="invalid-feedback">Por favor ingresa el nombre del producto</div>
+      </div>
+      <div class="col">
+        <label>Stock</label>
+        <input type="text" class="form-control" name="stock" #name="ngModel" [(ngModel)]="product.stock" required>
+        <div class="invalid-feedback">Por favor ingresa el nombre del producto</div>
+      </div>
+    </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)='addProduct()'>Add Product</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Edit -->
+<div class="modal fade" id="edit"><div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">Edit Product</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+      <div class="col">
+        <label>Product</label>
+        <input type="text" class="form-control" name="product" #name="ngModel" [(ngModel)]="product.product" required>
+        <div class="invalid-feedback">Por favor ingresa el nombre del producto</div>
+      </div>
+      <div class="col">
+        <label>Provider</label>
+        <input type="text" class="form-control" name="provider" #name="ngModel" [(ngModel)]="product.provider" required>
+        <div class="invalid-feedback">Por favor ingresa el nombre del producto</div>
+      </div>
+      <div class="col">
+        <label>Stock</label>
+        <input type="text" class="form-control" name="stock" #name="ngModel" [(ngModel)]="product.stock" required>
+        <div class="invalid-feedback">Por favor ingresa el nombre del producto</div>
+      </div>
+    </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)='editProduct()'>Edit Product</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Eliminar -->
+<div class="modal fade" id="delete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Delete Company</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ¿Estás seguro de eliminar el producto: {{product.product}}?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="deleteProduct(product._id)">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>

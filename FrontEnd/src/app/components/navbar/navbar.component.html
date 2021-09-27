@@ -1,0 +1,29 @@
+<header>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <b class="navbar-brand">Contorl de Empresas</b>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item" *ngIf='_userService.getIdentity().rol == "admin"'>
+            <a class="nav-link" (click)='companys()'>Companys</a>
+          </li>
+          <li class="nav-item" *ngIf='_userService.getIdentity().rol == "company"'>
+            <a class="nav-link" (click)='employees()'>Employees</a>
+          </li>
+          <li class="nav-item" *ngIf='_userService.getIdentity().rol == "company"'>
+            <a class="nav-link" (click)='products()'>Products</a>
+          </li>
+          <li class="nav-item" *ngIf='_userService.getIdentity().rol == "company" || _userService.getIdentity().rol == "admin"'>
+            <a class="nav-link" (click)='logout()'>LogOut</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+<body>
+  <router-outlet></router-outlet>
+</body>
