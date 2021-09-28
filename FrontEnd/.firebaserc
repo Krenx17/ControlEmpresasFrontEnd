@@ -1,11 +1,5 @@
 {
-  "targets": {
-    "controlempresas-7c4e2": {
-      "hosting": {
-        "FrontEnd": [
-          "controlempresas-7c4e2"
-        ]
-      }
-    }
+  "projects": {
+    "default": "controlempresas-7c4e2"
   }
 }

@@ -25,6 +25,7 @@ export class EmployeesComponent implements OnInit {
     this._employeeModel.allemployee().subscribe(
       response =>{
         this.employees = response.employees
+        this.employee = new Employee('','','','',0,'','')
       }
     )
   }

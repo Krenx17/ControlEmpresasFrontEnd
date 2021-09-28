@@ -25,6 +25,7 @@ export class ProductsComponent implements OnInit {
     this._productService.allproduct().subscribe(
       response =>{
         this.products = response.products
+        this.product = new Product('','','','',0,0)
       }
     )
   }

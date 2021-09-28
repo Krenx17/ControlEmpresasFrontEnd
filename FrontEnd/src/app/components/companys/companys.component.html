@@ -1,10 +1,8 @@
 <body>
   <h1>Companys</h1>
   <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#add">Add Company</button>
-  <div *ngIf='companys == 0'>
-    <h6>No hay ningun empleado</h6>
-  </div>
-  <table *ngIf='companys.length>=1'>
+
+  <table>
     <thead>
       <tr>
         <th scope="col">ID</th>

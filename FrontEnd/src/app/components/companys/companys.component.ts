@@ -25,6 +25,7 @@ export class CompanysComponent implements OnInit {
     this._userService.allcompany().subscribe(
       response =>{
         this.companys = response.companys
+        this.userModel = new User('','',0,'','','','','',)
       }
     )
   }

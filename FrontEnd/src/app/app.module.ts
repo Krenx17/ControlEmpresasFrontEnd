@@ -12,8 +12,10 @@ import { EmployeesComponent } from './components/employees/employees.component';
 import { ProductsComponent } from './components/products/products.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 
-import { AngularFireModule } from '@angular/fire'
+/*
+import { AngularFireModule } from '@angular/fire/compat'
 import { environment } from 'src/environments/environment.prod';
+*/
 
 @NgModule({
   declarations: [
@@ -30,7 +32,7 @@ import { environment } from 'src/environments/environment.prod';
     HttpClientModule,
     FormsModule,
     CommonModule,
-    AngularFireModule.initializeApp(environment.firebaseConfiguration)
+    //AngularFireModule.initializeApp(environment.firebaseConfiguration)
   ],
   providers: [],
   bootstrap: [AppComponent]
